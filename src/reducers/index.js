@@ -10,10 +10,10 @@ function users(state = [], action) {
   }
 }
 
-function userdetail(state = [], action) {
+function userDetail(state = {}, action) {
   switch (action.type) {
     case REQUEST_USER_DETAIL_COMPLETE:
-      return [...state, ...action.payload];
+      return { ...state, ...action.payload };
     default:
       return state;
   }
@@ -21,7 +21,7 @@ function userdetail(state = [], action) {
 
 const rootReducer = combineReducers({
   users,
-  userdetail
+  userDetail
 });
 
 export default rootReducer;

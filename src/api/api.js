@@ -16,7 +16,7 @@ class GithubApi {
     }
   }
 
-  static async getUserDetails(userLogin) {
+  static async getUserDetail(userLogin) {
     try {
       const response = await http.get(`/users/${userLogin}`)
       return response.data

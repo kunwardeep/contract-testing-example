@@ -3,19 +3,20 @@ import { PropTypes } from 'prop-types';
 
 class User extends Component {
   render() {
-    const { user } = this.props;
+    const { user, index } = this.props;
 
     return (
       <div >
         <div>
-          user: <a href={`user/${user.login}`}>{user.login}</a>
+          user_{index + 1} <a href={`user/${user.login}`}>{user.login}</a>
         </div>
       </div>);
   }
 }
 
 User.propTypes = {
-  user: PropTypes.object.isRequired
+  user: PropTypes.object.isRequired,
+  index: PropTypes.number.isRequired
 };
 
 export default User;

@@ -19,9 +19,9 @@ const requestUsersComplete = users => ({
   payload: users
 });
 
-const requestUserDetailComplete = user => ({
+const requestUserDetailComplete = userDetail => ({
   type: REQUEST_USER_DETAIL_COMPLETE,
-  payload: user
+  payload: userDetail
 });
 
 export const users = () => async dispatch => {
@@ -31,17 +31,17 @@ export const users = () => async dispatch => {
     return dispatch(requestUsersComplete(allUsers));
   }
   catch (e) {
-    console.log(e)
+    console.error(e)
   }
 };
 
-export const userDetail = () => async dispatch => {
+export const userDetail = (userlogin) => async dispatch => {
   dispatch(requestUserDetail());
   try {
-    const user = await githubApi.getUserDetails();
-    return dispatch(requestUserDetailComplete(user));
+    const userDetail = await githubApi.getUserDetail(userlogin);
+    return dispatch(requestUserDetailComplete(userDetail));
   }
   catch (e) {
-    console.log(e)
+    console.error(e)
   }
 };

@@ -1,29 +1,28 @@
 import React, { Component } from 'react';
-// import { PropTypes } from 'prop-types';
+import { userDetail } from '../../actions/githubActions';
+
+import { connect } from 'react-redux';
+
 
 class UserDetails extends Component {
-  componentDidMount() {
-    const userlogin = this.props.match.params.userlogin || ''
-    console.log(userlogin)
-  };
   render() {
-    // const { user } = null;
-
+    const { userDetail } = this.props;
     return (
       <div >
-        x
-
+        login: {userDetail.login || 'unknown'}   <br />
+        company: {userDetail.company || 'unknown'}  <br />
+        blog: {userDetail.blog || 'unknown'} <br />
       </div>);
   }
 }
 
-// UserDetails.propTypes = {
-//   user: PropTypes.object.isRequired
-// };
+const mapStateToProps = (state) => {
+  return { userDetail: state.userDetail };
+};
 
-export default UserDetails;
-
-// const User = ({ match }) => {
-//   return <h1>Hello {match.params.username}!</h1>;
-// };
-
+const mapDispatchToProps = (dispatch, props) => {
+  return {
+    userDetailCall: dispatch(userDetail(props.match.params.userlogin))
+  }
+}
+export default connect(mapStateToProps, mapDispatchToProps)(UserDetails);
