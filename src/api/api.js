@@ -1,5 +1,5 @@
 const axios = require('axios');
-const serverAddr = 'https://api.github.com';
+const serverAddr = process.env.REACT_APP_SERVER === 'local' ? 'http://localhost:5050' : 'https://api.github.com';
 
 const http = axios.create({
   baseURL: serverAddr,
